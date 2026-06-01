@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pesona Kebumen - Destinasi Wisata Pilihan Di Kebumen</title>
+    <style>
+        /* --- UTILITAS & RESET --- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: #f8fafc;
+            color: #1e293b;
+            line-height: 1.6;
+        }
+
+        /* --- NAVBAR (UI/UX Sticky) --- */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background-color: rgba(15, 23, 42, 0.95);
+            backdrop-filter: blur(5px);
+            padding: 20px 8%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        header .logo {
+            color: #38bdf8;
+            font-size: 22px;
+            font-weight: 800;
+            letter-spacing: 1px;
+        }
+
+        header ul {
+            display: flex;
+            list-style: none;
+        }
+
+        header ul li {
+            margin-left: 35px;
+        }
+
+        header ul li a {
+            color: #f1f5f9;
+            text-decoration: none;
+            font-size: 16px;
+            font-weight: 500;
+            transition: 0.3s ease;
+        }
+
+        header ul li a:hover {
+            color: #38bdf8;
+        }
+
+        /* --- SECTIONS CONFIGURATION --- */
+        section {
+            padding: 110px 8% 80px 8%;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .section-title {
+            font-size: 32px;
+            font-weight: 700;
+            margin-bottom: 15px;
+            color: #0f172a;
+            position: relative;
+            text-align: center;
+        }
+
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 60px;
+            height: 4px;
+            background-color: #38bdf8;
+            margin: 10px auto 0 auto;
+            border-radius: 2px;
+        }
+
+        .section-desc {
+            text-align: center;
+            max-width: 600px;
+            color: #64748b;
+            margin-bottom: 50px;
+            font-size: 16px;
+        }
+
+        /* --- SECTION 1: HERO / HOME --- */
+        #home {
+            background: linear-gradient(rgba(15, 23, 42, 0.65), rgba(15, 23, 42, 0.5)), 
+                        url('https://kebumen24.com/wp-content/uploads/2023/12/407246841_1072741813747462_1145403301947819159_n.jpg') no-repeat center center/cover;
+            color: white;
+            text-align: center;
+            padding-top: 150px;
+        }
+
+        #home h1 {
+            font-size: 52px;
+            font-weight: 800;
+            margin-bottom: 20px;
+            text-shadow: 0 4px 10px rgba(0,0,0,0.3);
+        }
+
+        #home p {
+            font-size: 20px;
+            max-width: 700px;
+            margin-bottom: 35px;
+            color: #e2e8f0;
+        }
+
+        .btn-explore {
+            display: inline-block;
+            padding: 13px 30px;
+            background-color: #38bdf8;
+            color: #0f172a;
+            text-decoration: none;
+            font-weight: 600;
+            border-radius: 50px;
+            transition: 0.3s ease;
+            box-shadow: 0 4px 15px rgba(56, 189, 248, 0.4);
+        }
+
+        .btn-explore:hover {
+            background-color: #0ea5e9;
+            transform: translateY(-3px);
+        }
+
+        /* --- SECTION 2: JELAJAH DESTINASI (6 CARDS GRID) --- */
+        #destinasi {
+            background-color: #ffffff;
+        }
+
+        .grid-destinasi {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 30px;
+            width: 100%;
+            max-width: 1200px;
+        }
+
+        .card {
+            background-color: #f8fafc;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+            transition: 0.3s ease;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+        }
+
+        .card-img {
+            width: 100%;
+            height: 220px;
+            object-fit: cover;
+        }
+
+        .card-content {
+            padding: 25px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .card-tag {
+            display: inline-block;
+            align-self: flex-start;
+            font-size: 11px;
+            font-weight: 700;
+            text-transform: uppercase;
+            color: #0ea5e9;
+            background-color: #e0f2fe;
+            padding: 4px 12px;
+            border-radius: 20px;
+            margin-bottom: 12px;
+        }
+
+        .card-title {
+            font-size: 20px;
+            font-weight: 700;
+            margin-bottom: 10px;
+            color: #0f172a;
+        }
+
+        .card-text {
+            font-size: 14px;
+            color: #64748b;
+            text-align: justify;
+        }
+
+        /* --- SECTION 3: TENTANG KEBUMEN --- */
+        #tentang {
+            background-color: #f1f5f9;
+        }
+
+        .about-container {
+            display: flex;
+            align-items: center;
+            gap: 50px;
+            width: 100%;
+            max-width: 1100px;
+        }
+
+        .about-text {
+            flex: 1;
+        }
+
+        .about-text p {
+            margin-bottom: 15px;
+            font-size: 16px;
+            color: #475569;
+            text-align: justify;
+        }
+
+        .about-img {
+            flex: 1;
+            width: 100%;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        /* --- SECTION 4: TIM KAMI (6 ANGGOTA) --- */
+        #tim {
+            background-color: #ffffff;
+        }
+
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 25px;
+            width: 100%;
+            max-width: 1100px;
+        }
+
+        .team-member {
+            background-color: #f8fafc;
+            padding: 25px;
+            border-radius: 15px;
+            text-align: center;
+            border: 1px solid #e2e8f0;
+            transition: 0.3s ease;
+        }
+
+        .team-member:hover {
+            border-color: #38bdf8;
+            background-color: #f0fdfa;
+        }
+
+        .team-avatar {
+            width: 70px;
+            height: 70px;
+            background-color: #0f172a;
+            border-radius: 50%;
+            margin: 0 auto 15px auto;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 22px;
+            color: #38bdf8;
+            font-weight: bold;
+        }
+
+        .team-name {
+            font-weight: 700;
+            color: #0f172a;
+            font-size: 16px;
+        }
+
+        .team-role {
+            font-size: 13px;
+            color: #64748b;
+            margin-top: 5px;
+            font-weight: 500;
+        }
+
+        /* --- FOOTER --- */
+        footer {
+            background-color: #0f172a;
+            color: #94a3b8;
+            text-align: center;
+            padding: 30px;
+            font-size: 14px;
+            border-top: 1px solid #334155;
+        }
+
+        /* --- RESPONSIVE DESIGN (UX) --- */
+        @media (max-width: 992px) {
+            header { padding: 15px 5%; }
+            header ul { display: none; }
+            section { padding: 90px 5% 60px 5%; }
+            #home h1 { font-size: 38px; }
+            .about-container { flex-direction: column; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- NAVIGASI UTAMA -->
+    <header>
+        <div class="logo">PesonaKebumen</div>
+        <ul>
+            <li><a href="#home">Beranda</a></li>
+            <li><a href="#destinasi">Destinasi</a></li>
+            <li><a href="#tentang">Geopark</a></li>
+            <li><a href="#tim">Tim Kami</a></li>
+        </ul>
+    </header>S
+
+    <!-- SECTION 1: BERANDA -->
+    <section id="home">
+        <h1>Jelajahi Keindahan Kebumen</h1>
+        <p>Temukan surga tersembunyi mulai dari eksotisme pantai pasir putih, petualangan gua alam kuno, hingga kemegahan benteng bersejarah.</p>
+        <a href="#destinasi" class="btn-explore">Mulai Jelajah</a>
+    </section>
+
+    <!-- SECTION 2: 6 DESTINASI WISATA -->
+    <section id="destinasi">
+        <h2 class="section-title">Destinasi Unggulan</h2>
+        <p class="section-desc">Koleksi tempat wisata terbaik dan paling populer di Kabupaten Kebumen pilihan kelompok kami.</p>
+        
+        <div class="grid-destinasi">
+            <!-- Wisata 1: Pantai Menganti -->
+            <div class="card">
+                <img src="https://tse3.mm.bing.net/th/id/OIP.i4vh4Xdwk73U9kontQjnswHaE8?rs=1&pid=ImgDetMain&o=7&rm=3" alt="Pantai Menganti" class="card-img">
+                <div class="card-content">
+                    <span class="card-tag">Pantai</span>
+                    <h3 class="card-title">Pantai Menganti</h3>
+                    <p class="card-text">Sering disebut sebagai salah satu pantai terindah di Jawa Tengah. Menawarkan perpaduan lanskap tebing karst hijau yang megah, pasir putih yang bersih, dan spot mercusuar ikonik.</p>
+                </div>
+            </div>
+
+            <!-- Wisata 2: Gua Jatijajar -->
+            <div class="card">
+                <img src="https://th.bing.com/th/id/R.fec22b686de841964776c3fd1c5c0c20?rik=Zj12pez2XiL0hA&riu=http%3a%2f%2ffacebumen.com%2fwp-content%2fuploads%2f2014%2f04%2fgoa-jatijajar-kebumen.jpg&ehk=i49C%2bt4wRSPsHDs5%2fSqC1fG1IfQP9dkufjFqdr8DTlY%3d&risl=&pid=ImgRaw&r=0" alt="Gua Jatijajar" class="card-img">
+                <div class="card-content">
+                    <span class="card-tag">Gua & Edukasi</span>
+                    <h3 class="card-title">Gua Jatijajar</h3>
+                    <p class="card-text">Situs gua kapur legendaris yang terbentuk secara alami. Di dalamnya terdapat lampu warna-warni yang menerangi stalaktit, stalagmit, patung diorama Lutung Kasarung, serta sendang keramat.</p>
+                </div>
+            </div>
+
+            <!-- Wisata 3: Benteng Van der Wijck -->
+            <div class="card">
+                <img src="https://magelangekspres.disway.id/upload/large/42a58bc33a45c45ebdbc6567e2396eb1.jpeg" alt="Benteng Van der Wijck" class="card-img">
+                <div class="card-content">
+                    <span class="card-tag">Sejarah & Budaya</span>
+                    <h3 class="card-title">Benteng Van der Wijck</h3>
+                    <p class="card-text">Benteng pertahanan peninggalan kolonial Belanda yang terletak di Gombong. Ciri khas utamanya adalah arsitektur bangunan berbentuk segi delapan yang seluruhnya berwarna merah bata murni.</p>
+                </div>
+            </div>
+
+            <!-- Wisata 4: Pantai Pecaron -->
+            <div class="card">
+                <img src="https://image.idntimes.com/post/20250617/pantai-pecaron-1_e6b4043b-1cda-48ab-b1c4-2b4f4f63e8c6.jpg?tr=w-1200" alt="Pantai Pecaron" class="card-img">
+                <div class="card-content">
+                    <span class="card-tag">Pantai</span>
+                    <h3 class="card-title">Pantai Pecaron</h3>
+                    <p class="card-text">Destinasi pantai tersembunyi yang menawarkan ketenangan ekstra. Dikelilingi oleh barisan pohon kelapa yang menjulang tinggi serta tebing batu megah di sepanjang bibir pantai pantai selatan.</p>
+                </div>
+            </div>
+
+            <!-- Wisata 5: Waduk Sempor -->
+            <div class="card">
+                <img src="https://lh5.googleusercontent.com/-fq5sNhesgn0/U1ZiJcTlxwI/AAAAAAAAT0E/diWc0aygsAE/s1200/Sempor-1.jpg" alt="Waduk Sempor" class="card-img">
+                <div class="card-content">
+                    <span class="card-tag">Waduk & Alam</span>
+                    <h3 class="card-title">Waduk Sempor</h3>
+                    <p class="card-text">Sebuah waduk buatan yang berfungsi sebagai irigasi sekaligus tempat rekreasi. Menampilkan udara perbukitan yang sejuk, pemandangan air yang tenang, serta jembatan pandang yang estetik.</p>
+                </div>
+            </div>
+
+            <!-- Wisata 6: Bukit Pentulu Indah -->
+            <div class="card">
+                <img src="https://www.nativeindonesia.com/foto/2023/06/landmark-pentulu-indah.jpg" alt="Bukit Pentulu Indah" class="card-img">
+                <div class="card-content">
+                    <span class="card-tag">Perbukitan</span>
+                    <h3 class="card-title">Pentulu Indah</h3>
+                    <p class="card-text">Kawasan wisata perbukitan yang dikelilingi hutan pinus rindang di Karangsambung. Lokasi paling dicari untuk menikmati keindahan kabut pagi dan pemandangan matahari terbit (*sunrise*).</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION 3: TENTANG KEBUMEN -->
+    <section id="tentang">
+        <h2 class="section-title">Mengenal Geopark Kebumen</h2>
+        <p class="section-desc">Sekilas keistimewaan alam di Kabupaten Kebumen.</p>
+        
+        <div class="about-container">
+            <div class="about-text">
+                <p><strong>Kabupaten Kebumen</strong> kaya akan warisan geologi bumi. Daerah ini memiliki wilayah cagar alam geologi Karangsambung di utara yang menyimpan rahasia batuan purba bawah laut, berpadu kontras dengan keindahan barisan perbukitan karst dan pesisir pantai selatan yang eksotis.</p>
+                <p>Melalui website ini, kelompok kami ingin mengenalkan keanekaragaman destinasi lokal agar masyarakat luas lebih menghargai keindahan serta menjaga kelestarian lingkungan tempat wisata di Kebumen.</p>
+            </div>
+            <img src="https://tse1.mm.bing.net/th/id/OIP.W_xyxWZQSLwn4Jc2j284cwHaFE?rs=1&pid=ImgDetMain&o=7&rm=3" alt="Pelestarian Alam" class="about-img">
+        </div>
+    </section>
+
+    <!-- SECTION 4: TIM KAMI (6 ANGGOTA KELOMPOK) -->
+    <section id="tim">
+        <h2 class="section-title">Anggota Kelompok</h2>
+        <p class="section-desc">Dibuat secara kompak bersama-sama demi memenuhi tugas Final Project KKA 2026.</p>
+        
+        <div class="team-grid">
+            <!-- Anggota 1 (Kamu) -->
+            <div class="team-member">
+                <div class="team-avatar">D</div>
+                <div class="team-name">Dicky Irsyad R</div>
+            </div>
+
+            <!-- Anggota 2 -->
+            <div class="team-member">
+                <div class="team-avatar">H</div>
+                <div class="team-name">Hendra Juli S</div>
+                
+            </div>
+
+            <!-- Anggota 3 -->
+            <div class="team-member">
+                <div class="team-avatar">V</div>
+                <div class="team-name">Varida Novianti</div>
+                <div class="team-role"></div>
+            </div>
+
+            <!-- Anggota 4 -->
+            <div class="team-member">
+                <div class="team-avatar">A</div>
+                <div class="team-name">Aqnindia Ilmi A</div>
+                <div class="team-role"></div>
+            </div>
+
+            <!-- Anggota 5 -->
+            <div class="team-member">
+                <div class="team-avatar">R</div>
+                <div class="team-name">Reisya Aulia P</div>
+                <div class="team-role"></div>
+            </div>
+
+            <!-- Anggota 6 -->
+            <div class="team-member">
+                <div class="team-member-inner">
+                    <div class="team-avatar">S</div>
+                    <div class="team-name">Sinta Nuriah</div>
+                    <div class="team-role">r</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <p>&copy; 2026 Kelompok KKA - Kelas X SMA. Hak Cipta Dilindungi.</p>
+    </footer>
+
+</body>
+</html>
